@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tasks</title>
+<link rel="stylesheet" href="./css/bootstrap.min.css" >
+<link rel="stylesheet" href="./css/todotask.css" >
+<link rel="stylesheet" href="./css/jquery.dataTables.min.css" >
+<script src="./js/jquery.min.js" > </script>  
+<script src="./js/jquery.dataTables.min.js" > </script>  
+<script src="./js/bootstrap.min.js" > </script>  
+<script src="./js/todotask.js" > </script>
+<script>
+function resetForm(){
+	$('#taskid').val('');
+	$("#taskEditor")[0].reset();
+	 return false;
+}
+
+</script>
+
+
+</head>
+<body>
+<div class="container">
+
+<div id="header">
+	<div id="logo">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="https://stok.ly">
+				<img src="https://stok.ly/wp-content/uploads/2020/08/cropped-logo.jpg">
+			</a>
+		</div>
+	</div>
+	<div class="menu-nav">
+		<p class="mbot15 ">My Tasks</p>
+	</div>
+</div>
+
+
+  <div class="main">
+	  <div class="row">
+		<h4 class="mbot15 tskSumm">Tasks Summary</h4>
+		<div class="col-md-2 col-xs-6 border-right">
+		  <h3 class="bold no-mtop"><span id="NewStatus"></span></h3>
+		  <p style="color:#989898" class="font-medium no-mbot">
+			New      </p>
+		</div>
+		<div class="col-md-2 col-xs-6 border-right">
+		  <h3 class="bold no-mtop"><span id="progressStatus"></span></h3>
+		  <p style="color:#03A9F4" class="font-medium no-mbot">
+			In Progress      </p>
+		</div>
+		<div class="col-md-2 col-xs-6 border-right">
+		  <h3 class="bold no-mtop"><span id="holdStatus"></span></h3>
+		  <p style="color:#2d2d2d" class="font-medium no-mbot">
+			On-hold      </p>
+		</div>
+		<div class="col-md-2 col-xs-6 border-right">
+		  <h3 class="bold no-mtop"><span id="CompleteStatus"></span></h3>
+		  <p style="color:#84c529" class="font-medium no-mbot">
+			Complete      </p>
+		</div>
+	</div>
+  
+  
+  
+  <div class="tablerow">
+	<div class="newTaskBtn">
+		<input id="newTaskId" class='btn btn-primary' onclick='return resetForm();' type="button" name='button' data-toggle="modal" data-target="#myTaskModal" value='New Task' />
+	</div>
+	<div id="alertMsg"></div>
+  <table id="taskTableID" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Task name</th>
+				<th>Priority</th>
+				<th>Status</th>
+                <th>Start date</th>
+                <th>Due date</th>
+                <th>Assigned to</th>
+                <th>Estimated time (in hr)</th>
+				<th>Action</th>
+            </tr>
+        </thead>
+
+    </table>
+    </div>
+	
+  </div>
+
+  
+   <div class="modal fade" id="myTaskModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Task</h4>
+        </div>
+		<form onsubmit='return taskFormSubmit(this);' id="taskEditor">
+			<div class="row">
+			<input type="hidden" id="taskid" name="id" >
+				<div class="col-lg-12 form-group">
+					<label>Task name</label>
+					<input class="form-control" type="text" name="task_name" id="task_name" required/>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label>Priority</label>
+					<select class="form-control" id="tskPriority" name="priority" >
+						<option>High</option>
+						<option>Low</option>
+						<option>Medium</option>
+						<option>Urgent</option>
+					  </select>
+				</div>
+
+				<div class="col-lg-6 form-group">
+					<label>Status</label>
+					<select class="form-control" id="tskStatus" name="status">
+						<option>New</option>
+						<option>In-Progress</option>
+						<option>On-hold</option>
+						<option>Complete</option>
+					  </select>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label>Start date</label>
+					<input class="form-control" type="date" name="start_date" id="start_date" required/>
+				</div>
+
+				<div class="col-lg-6 form-group">
+					<label>Due date</label>
+					<input class="form-control" type="date" name="due_date" id="due_date" required/>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label>Assigned to</label>
+					<input class="form-control" type="text" name="assigned_to" id="assigned_to" required/>
+				</div>
+
+				<div class="col-lg-6 form-group">
+					<label>Estimated time(in hr)</label>
+					<input class="form-control" type="number" name="estimated_time" id="estimated_time" required/>
+				</div>
+			</div>
+			
+			
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  <input id="saveTaskId" class='btn btn-primary' type="submit" name='submit' value='Save Task'/>
+        </div>
+		</form>
+      </div>
+      
+    </div>
+  </div>
+  
+ </div> 
+</body>
+</html>
