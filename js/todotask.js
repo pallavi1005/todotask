@@ -130,6 +130,7 @@ function bindtoDatatable(data) {
         })
     }
 	function editTask(data) {
+		$("#modelTitleId").text('Edit Task');
 		if(data)
 		{
 			$.ajax({
@@ -161,7 +162,7 @@ function bindtoDatatable(data) {
 	}
 	
 	function deleteTask(data) {
-		if(confirm("Are you sure?"))
+		if(confirm("Are you sure to delete this task?"))
 		{
 			$.ajax({
 				url : baseUrl+'/TodoProj/api/deleteTask.php',
@@ -187,4 +188,11 @@ function bindtoDatatable(data) {
 	
 		return '<div class="alert '+alertType+'" role="alert" >'+alertMsg+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
 	
+	}
+	
+	function resetForm(){
+		$("#modelTitleId").text('Add New Task');
+		$('#taskid').val('');
+		$("#taskEditor")[0].reset();
+	 return false;
 	}
